@@ -45,16 +45,22 @@ export function NewReservationButton({ properties }: { properties: { id: string,
         <form onSubmit={handleSubmit} className="space-y-4 pt-4">
           <div className="space-y-2">
             <Label htmlFor="propertyId">Propiedad</Label>
-            <div className="grid grid-cols-2 gap-2">
-              {properties.map(p => (
-                <label key={p.id} className="cursor-pointer">
-                  <input type="radio" name="propertyId" value={p.id} className="peer sr-only" required />
-                  <div className="rounded-md border border-muted bg-popover p-2 text-center text-sm transition-all hover:bg-muted peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary peer-checked:font-medium">
-                    {p.name}
-                  </div>
-                </label>
-              ))}
-            </div>
+            {properties.length === 0 ? (
+              <div className="text-sm text-amber-600 bg-amber-50 p-3 rounded-md border border-amber-200">
+                Aún no tienes propiedades creadas. Ve a la pestaña de "Propiedades" para añadir una primero.
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-2">
+                {properties.map(p => (
+                  <label key={p.id} className="cursor-pointer">
+                    <input type="radio" name="propertyId" value={p.id} className="peer sr-only" required />
+                    <div className="rounded-md border border-muted bg-popover p-2 text-center text-sm transition-all hover:bg-muted peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary peer-checked:font-medium">
+                      {p.name}
+                    </div>
+                  </label>
+                ))}
+              </div>
+            )}
           </div>
           <div className="space-y-2">
             <Label htmlFor="guestName">Huésped</Label>
