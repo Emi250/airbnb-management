@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { addExpense } from "@/app/actions/expenses"
 import { Plus } from "lucide-react"
 
@@ -39,17 +40,16 @@ export function NewExpenseButton({ properties }: { properties: Property[] }) {
         <form action={handleSubmit} className="grid gap-4 py-4">
           <div className="grid gap-2">
             <Label htmlFor="propertyId">Propiedad</Label>
-            <select 
-              name="propertyId" 
-              id="propertyId"
-              required
-              className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              <option value="" disabled selected>Seleccione una propiedad</option>
-              {properties.map(p => (
-                <option key={p.id} value={p.id}>{p.name}</option>
-              ))}
-            </select>
+            <Select name="propertyId" required>
+              <SelectTrigger>
+                <SelectValue placeholder="Seleccione una propiedad" />
+              </SelectTrigger>
+              <SelectContent>
+                {properties.map(p => (
+                  <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
           <div className="grid gap-2">
             <Label htmlFor="description">Descripción</Label>
@@ -58,32 +58,32 @@ export function NewExpenseButton({ properties }: { properties: Property[] }) {
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
               <Label htmlFor="category">Categoría</Label>
-              <select 
-                name="category" 
-                id="category"
-                required
-                className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                <option value="Mantenimiento">Mantenimiento</option>
-                <option value="Limpieza">Limpieza</option>
-                <option value="Servicios">Servicios (Luz, Gas, etc)</option>
-                <option value="Impuestos">Impuestos</option>
-                <option value="Mobiliario">Mobiliario</option>
-                <option value="Otro">Otro</option>
-              </select>
+              <Select name="category" defaultValue="Mantenimiento" required>
+                <SelectTrigger>
+                  <SelectValue placeholder="Categoría" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Mantenimiento">Mantenimiento</SelectItem>
+                  <SelectItem value="Limpieza">Limpieza</SelectItem>
+                  <SelectItem value="Servicios">Servicios (Luz, Gas, etc)</SelectItem>
+                  <SelectItem value="Impuestos">Impuestos</SelectItem>
+                  <SelectItem value="Mobiliario">Mobiliario</SelectItem>
+                  <SelectItem value="Otro">Otro</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
             <div className="grid gap-2">
               <Label htmlFor="expenseType">Tipo de Gasto</Label>
-              <select 
-                name="expenseType" 
-                id="expenseType"
-                required
-                className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                <option value="fijo">Fijo</option>
-                <option value="variable">Variable</option>
-                <option value="extraordinario">Extraordinario</option>
-              </select>
+              <Select name="expenseType" defaultValue="fijo" required>
+                <SelectTrigger>
+                  <SelectValue placeholder="Tipo de Gasto" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="fijo">Fijo</SelectItem>
+                  <SelectItem value="variable">Variable</SelectItem>
+                  <SelectItem value="extraordinario">Extraordinario</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
