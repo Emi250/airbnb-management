@@ -52,8 +52,7 @@ export async function addExpense(formData: FormData) {
     }
   })
   
-  revalidatePath('/expenses')
-  revalidatePath('/')
+  revalidatePath('/', 'layout')
 }
 
 export async function deleteExpense(formData: FormData) {
@@ -64,6 +63,5 @@ export async function deleteExpense(formData: FormData) {
     where: { id }
   })
   
-  revalidatePath('/expenses')
-  revalidatePath('/')
+  revalidatePath('/', 'layout')
 }

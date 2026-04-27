@@ -60,8 +60,7 @@ export async function addReservation(formData: FormData) {
     }
   })
   
-  revalidatePath('/calendar')
-  revalidatePath('/')
+  revalidatePath('/', 'layout')
 }
 
 export async function deleteReservation(formData: FormData) {
@@ -72,6 +71,5 @@ export async function deleteReservation(formData: FormData) {
     where: { id }
   })
   
-  revalidatePath('/calendar')
-  revalidatePath('/')
+  revalidatePath('/', 'layout')
 }

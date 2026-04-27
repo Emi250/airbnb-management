@@ -36,7 +36,7 @@ export async function addProperty(formData: FormData) {
     }
   })
 
-  revalidatePath('/properties')
+  revalidatePath('/', 'layout')
 }
 
 export async function deleteProperty(formData: FormData) {
@@ -51,7 +51,7 @@ export async function deleteProperty(formData: FormData) {
     data: { status: "inactive" }
   })
 
-  revalidatePath('/properties')
+  revalidatePath('/', 'layout')
 }
 
 export async function activateProperty(formData: FormData) {
@@ -63,5 +63,5 @@ export async function activateProperty(formData: FormData) {
     data: { status: "active" }
   })
 
-  revalidatePath('/properties')
+  revalidatePath('/', 'layout')
 }
