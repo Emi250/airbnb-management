@@ -29,10 +29,8 @@ export function NewExpenseButton({ properties }: { properties: Property[] }) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-          <Plus className="mr-2 h-4 w-4" /> Añadir Gasto
-        </Button>
+      <DialogTrigger render={<Button className="bg-primary hover:bg-primary/90 text-primary-foreground" />}>
+        <Plus className="mr-2 h-4 w-4" /> Añadir Gasto
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

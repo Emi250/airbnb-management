@@ -35,10 +35,8 @@ export function NewReservationButton({ properties }: { properties: { id: string,
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <div className="flex items-center gap-2 text-muted-foreground text-sm cursor-pointer hover:text-foreground w-max mt-4">
-          <span className="text-lg leading-none">+</span> Nueva página
-        </div>
+      <DialogTrigger render={<div className="flex items-center gap-2 text-muted-foreground text-sm cursor-pointer hover:text-foreground w-max mt-4" />}>
+        <span className="text-lg leading-none">+</span> Nueva página
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

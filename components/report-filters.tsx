@@ -23,9 +23,9 @@ export function ReportFilters({ properties, years }: ReportFiltersProps) {
   const currentProperty = searchParams.get("property") || "all"
   const currentYear = searchParams.get("year") || "all"
 
-  const updateFilters = (key: string, value: string) => {
+  const updateFilters = (key: string, value: string | null | undefined) => {
     const params = new URLSearchParams(searchParams.toString())
-    if (value === "all") {
+    if (!value || value === "all") {
       params.delete(key)
     } else {
       params.set(key, value)
