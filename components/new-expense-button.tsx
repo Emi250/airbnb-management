@@ -40,16 +40,16 @@ export function NewExpenseButton({ properties }: { properties: Property[] }) {
         <form action={handleSubmit} className="grid gap-4 py-4">
           <div className="grid gap-2">
             <Label htmlFor="propertyId">Propiedad</Label>
-            <Select name="propertyId" required>
-              <SelectTrigger>
-                <SelectValue placeholder="Seleccione una propiedad" />
-              </SelectTrigger>
-              <SelectContent>
-                {properties.map(p => (
-                  <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <div className="grid grid-cols-2 gap-2">
+              {properties.map(p => (
+                <label key={p.id} className="cursor-pointer">
+                  <input type="radio" name="propertyId" value={p.id} className="peer sr-only" required />
+                  <div className="rounded-md border border-muted bg-popover p-2 text-center text-sm transition-all hover:bg-muted peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary peer-checked:font-medium">
+                    {p.name}
+                  </div>
+                </label>
+              ))}
+            </div>
           </div>
           <div className="grid gap-2">
             <Label htmlFor="description">Descripción</Label>
@@ -58,32 +58,36 @@ export function NewExpenseButton({ properties }: { properties: Property[] }) {
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
               <Label htmlFor="category">Categoría</Label>
-              <Select name="category" defaultValue="Mantenimiento" required>
-                <SelectTrigger>
-                  <SelectValue placeholder="Categoría" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Mantenimiento">Mantenimiento</SelectItem>
-                  <SelectItem value="Limpieza">Limpieza</SelectItem>
-                  <SelectItem value="Servicios">Servicios (Luz, Gas, etc)</SelectItem>
-                  <SelectItem value="Impuestos">Impuestos</SelectItem>
-                  <SelectItem value="Mobiliario">Mobiliario</SelectItem>
-                  <SelectItem value="Otro">Otro</SelectItem>
-                </SelectContent>
-              </Select>
+              <div className="grid grid-cols-2 gap-2">
+                {[
+                  "Mantenimiento", "Limpieza", "Servicios", 
+                  "Impuestos", "Mobiliario", "Otro"
+                ].map(cat => (
+                  <label key={cat} className="cursor-pointer">
+                    <input type="radio" name="category" value={cat} className="peer sr-only" required defaultChecked={cat === "Mantenimiento"} />
+                    <div className="rounded-md border border-muted bg-popover px-2 py-1.5 text-center text-xs transition-all hover:bg-muted peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary peer-checked:font-medium">
+                      {cat}
+                    </div>
+                  </label>
+                ))}
+              </div>
             </div>
             <div className="grid gap-2">
               <Label htmlFor="expenseType">Tipo de Gasto</Label>
-              <Select name="expenseType" defaultValue="fijo" required>
-                <SelectTrigger>
-                  <SelectValue placeholder="Tipo de Gasto" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="fijo">Fijo</SelectItem>
-                  <SelectItem value="variable">Variable</SelectItem>
-                  <SelectItem value="extraordinario">Extraordinario</SelectItem>
-                </SelectContent>
-              </Select>
+              <div className="flex flex-col gap-2">
+                {[
+                  { value: "fijo", label: "Fijo" },
+                  { value: "variable", label: "Variable" },
+                  { value: "extraordinario", label: "Extraordinario" }
+                ].map(type => (
+                  <label key={type.value} className="cursor-pointer">
+                    <input type="radio" name="expenseType" value={type.value} className="peer sr-only" required defaultChecked={type.value === "fijo"} />
+                    <div className="rounded-md border border-muted bg-popover px-2 py-1.5 text-center text-xs transition-all hover:bg-muted peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary peer-checked:font-medium">
+                      {type.label}
+                    </div>
+                  </label>
+                ))}
+              </div>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
