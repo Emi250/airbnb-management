@@ -45,7 +45,7 @@ export function CashFlowChart({ data }: CashFlowChartProps) {
             tickFormatter={(val) => `$${val >= 1000 ? (val / 1000).toFixed(0) + 'k' : val}`}
           />
           <Tooltip 
-            formatter={(value: number) => formatCurrency(value)}
+            formatter={(value: any) => formatCurrency(Number(value))}
             cursor={{ fill: 'transparent' }}
           />
           <Legend wrapperStyle={{ paddingTop: '20px' }} />
